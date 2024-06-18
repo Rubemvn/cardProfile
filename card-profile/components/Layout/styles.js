@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-width: 100%;
-height: 100vh;
-background-color: black;
-color: white;
-
-`
+export const Grid = styled.main`
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 70px auto;
+	grid-template-areas:
+		"NB"
+		"CT";
+	height: 100vh;
+`;

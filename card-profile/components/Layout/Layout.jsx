@@ -1,11 +1,14 @@
 "use client";
-import { Container } from "./styles";
+import NavBar from "../NavBar/NavBar";
+import { Grid } from "./styles";
+import Content from "../Content/Content";
 
-const Layout = () => {
+const Layout = ({ children }) => {
 	return (
-		<Container>
-			<>Olá</>
-		</Container>
+		<Grid>
+			<NavBar />
+			<Content>{children}</Content>
+		</Grid>
 	);
 };
 

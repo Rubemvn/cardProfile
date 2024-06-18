@@ -24,6 +24,7 @@ body{
   width: 100%;
   height: 100vh;
   /* font-family: 'bricolage Grotesque'; */
+  background-color: ${(props) => props.theme.colors.theme01};
 
   @media (max-width: 1024px){
 		overflow: ${({ isMenuOpen }) => (isMenuOpen ? "hidden" : "auto")};
