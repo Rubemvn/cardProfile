@@ -9,7 +9,6 @@ export const Container = styled.nav`
 	align-items: center;
 	justify-content: center;
 	grid-area: NB;
-	border-bottom: 1px solid ${({ theme }) => theme.colors.theme02};
 `;
 
 export const Logo = styled(Image)`

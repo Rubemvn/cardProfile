@@ -1,5 +1,11 @@
 "use client";
 import { createGlobalStyle } from "styled-components";
+import { Bricolage_Grotesque } from "next/font/google";
+
+const bricolageGrotesque = Bricolage_Grotesque({
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700", "800"],
+});
 
 export default createGlobalStyle`
 
@@ -26,14 +32,18 @@ body{
   /* font-family: 'bricolage Grotesque'; */
   background-color: ${(props) => props.theme.colors.theme01};
 
+  font-family: ${bricolageGrotesque.style.fontFamily};
+  
+  
   @media (max-width: 1024px){
-		overflow: ${({ isMenuOpen }) => (isMenuOpen ? "hidden" : "auto")};
+    overflow: ${({ isMenuOpen }) => (isMenuOpen ? "hidden" : "auto")};
 	}
 }
 
 *, button, input {
   border: 1;
   outline: 0;
+  font-family: ${bricolageGrotesque.style.fontFamily};
   /* font-family: 'Bricolage_Grotesque'; */
 }
 

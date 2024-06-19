@@ -5,4 +5,5 @@ export const Container = styled.main`
 	grid-area: CT;
 	height: calc(100vh - 7rem);
 	color: ${({ theme }) => theme.colors.theme04};
+	overflow: hidden;
 `;

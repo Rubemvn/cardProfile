@@ -1,13 +1,5 @@
-import GlobalStyles from "@/styles/GlobalStyles";
+import { UserCardContextProvider } from "@/context/UserCardContext";
 import StyledComponentsRegistry from "./registry";
-
-import { Bricolage_Grotesque } from "next/font/google";
-import { ThemeProvider } from "styled-components";
-
-const bricolageGrotesque = Bricolage_Grotesque({
-	subsets: ["latin"],
-	weight: ["400", "500", "600", "700", "800"],
-});
 
 export const metadata = {
 	title: "Card Profile GitHub",
@@ -20,11 +12,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<>
-			<html
-				lang='pt-br'
-				className={bricolageGrotesque.className}>
+			<html lang='pt-br'>
 				<body>
-					<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+					<UserCardContextProvider>
+						<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+					</UserCardContextProvider>
 				</body>
 			</html>
 		</>

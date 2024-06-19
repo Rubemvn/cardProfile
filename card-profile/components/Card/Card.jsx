@@ -10,15 +10,14 @@ import {
 	ReposLink,
 } from "./styles";
 
-const joaquim = "";
-
 const Card = ({ user }) => {
 	const date = new Date(user.created_at);
 	const formattedDate = date.toLocaleDateString("pt-BR");
-
-	const [cidade, uf] = user.location.split("-");
-
-	console.log(cidade, uf);
+	let cidade = "";
+	let uf = "";
+	if (user.location) {
+		[cidade, uf] = user.location.split("-");
+	}
 
 	return (
 		<Container>
@@ -28,6 +27,7 @@ const Card = ({ user }) => {
 						src={user.avatar_url}
 						width={150}
 						height={150}
+						alt={`Imagem de perfil do usuário ${user.login} do GitHub`}
 					/>
 					<UserData>
 						<p>#{user.id}</p>
