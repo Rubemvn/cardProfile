@@ -9,6 +9,10 @@ export const SearchContent = styled.div`
 	max-height: calc(100vh - (7rem + 4rem + 2rem));
 	width: 100%;
 	gap: 2rem;
+
+	form {
+		display: flex;
+	}
 `;
 export const SearchBar = styled.input`
 	/* outros estilos aqui */
@@ -20,7 +24,7 @@ export const SearchBar = styled.input`
 	width: 40rem;
 	color: ${({ theme }) => theme.colors.primary};
 	text-align: center;
-	font-size: 2rem;
+	font-size: 1.6rem;
 	&::placeholder {
 		font-size: 1.6rem;
 		text-align: center;
@@ -28,8 +32,16 @@ export const SearchBar = styled.input`
 `;
 export const SearchButton = styled.button`
 	font-size: 2rem;
-	padding: 1rem 0.5rem;
+	padding: 1rem 1.5rem;
 	background-color: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: ${({ theme }) => theme.colors.primary};
+	background-color: ${({ theme }) => theme.colors.theme02};
+	border: 1px solid ${({ theme }) => theme.colors.theme02};
+	border-left: 0px;
+	border-radius: 0 0.5rem 0.5rem 0;
 `;
 
 export const ResultsContainer = styled.div`
@@ -50,18 +62,21 @@ export const ResultItem = styled.div`
 	padding: 0.5rem 0.8rem;
 	border-radius: 0.5rem;
 	transition: all 0.2s linear;
-	border: 1px solid ${({ theme }) => theme.colors.transparent01};
+	border: 1px solid ${({ theme }) => theme.colors.theme03};
 
 	&:hover {
 		margin-left: 1rem;
 		width: calc(100% - 1rem);
 		background-color: ${({ theme }) => theme.colors.transparent01};
 	}
-
 	p {
 		font-size: 1.6rem;
-		color: ${({ theme }) => theme.colors.tertiary};
+		color: ${({ theme }) => theme.colors.theme06};
 		font-weight: 300;
+	}
+
+	&:hover p {
+		color: ${({ theme }) => theme.colors.primary};
 	}
 `;
 export const ProfileResult = styled(Image)`

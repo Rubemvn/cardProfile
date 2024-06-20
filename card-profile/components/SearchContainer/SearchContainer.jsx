@@ -45,7 +45,7 @@ const SearchContainer = () => {
 						type='search'
 						value={searchValue}
 						onChange={(e) => setValueSearch(e.target.value)}
-						placeholder='Pesquise pelo nome ou username do GitHub '
+						placeholder='Pesquise pelo nome ou username do GitHub'
 					/>
 					<SearchButton type='submit'>
 						<IoSearch />
