@@ -21,8 +21,6 @@ const CardSection = () => {
 		setDataUser();
 	}, [userCard]);
 
-	console.log(offUser);
-
 	return (
 		<Container>
 			{!user ? (

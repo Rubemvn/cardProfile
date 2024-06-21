@@ -1,16 +1,24 @@
 import {
 	Container,
 	CardContainer,
-	ContentCard,
+	HeaderCard,
 	Profile,
-	UserData,
-	FollowersLink,
+	MainCard,
 	FooterCard,
+	FooterLink,
 	LocationLink,
-	ReposLink,
+	ImageGH,
+	FooterLinks,
 } from "./styles";
 
+import { toJpeg, toPng, toSvg } from "html-to-image";
+import { useRef } from "react";
+
+import { FaLocationDot } from "react-icons/fa6";
+
 const Card = ({ user }) => {
+	const cardRef = useRef(null);
+
 	const date = new Date(user.created_at);
 	const formattedDate = date.toLocaleDateString("pt-BR");
 	let cidade = "";
@@ -19,42 +27,71 @@ const Card = ({ user }) => {
 		[cidade, uf] = user.location.split("-");
 	}
 
+	const handleDownload = (format) => {
+		if (cardRef.current) {
+			toPixelData(cardRef.current, { quality: 2 })
+				.then((dataUrl) => {
+					const link = document.createElement("a");
+					link.download = `${user.login}-card.svg`;
+					link.href = dataUrl;
+					link.click();
+				})
+				.catch((error) => {
+					console.error("Failed to convert to image", error);
+				});
+		}
+	};
+
 	return (
 		<Container>
-			<CardContainer>
-				<ContentCard>
+			<button onClick={handleDownload("jpeg")}>Baixar como JPEG</button>
+			<button onClick={handleDownload("png")}>Baixar como PNG</button>
+			<button onClick={handleDownload("svg")}>Baixar como SVG</button>
+			<CardContainer ref={cardRef}>
+				<HeaderCard>
 					<Profile
 						src={user.avatar_url}
 						width={150}
 						height={150}
 						alt={`Imagem de perfil do usuário ${user.login} do GitHub`}
 					/>
-					<UserData>
-						<p>#{user.id}</p>
-						<h2>{user.name}</h2>
-						<h3>{user.login.toLowerCase()}</h3>
-						<p>{user.bio}</p>
-						<div className='followers'>
-							<FollowersLink href={user.followers_url}>
-								{user.followers} seguidores
-							</FollowersLink>
-							•
-							<FollowersLink href={user.following_url}>
-								seguindo {user.following}
-							</FollowersLink>
-						</div>
-					</UserData>
-				</ContentCard>
+					<ImageGH />
+					<div className='bgHeader'></div>
+				</HeaderCard>
+				<MainCard>
+					<p id='id'>#{user.id}</p>
+					<h2>{user.name}</h2>
+					<h3>@{user.login.toLowerCase()}</h3>
+					<p id='bio'>{user.bio}</p>
+				</MainCard>
 				<FooterCard>
-					<ReposLink href={`https://github.com/${user.login}?tab=repositories`}>
-						{user.public_repos} repositórios públicos
-					</ReposLink>
-					<div>
+					<FooterLinks>
+						<FooterLink
+							href={`https://github.com/${user.login}?tab=followers`}
+							target='_blank'>
+							<p>{user.followers}</p>
+							<p>seguidores</p>
+						</FooterLink>
+						<FooterLink
+							href={`https://github.com/${user.login}?tab=following`}
+							target='_blank'>
+							<p>{user.following}</p>
+							<p>seguidos</p>
+						</FooterLink>
+						<FooterLink
+							href={`https://github.com/${user.login}?tab=repositories`}
+							target='_blank'>
+							<p>{user.public_repos}</p>
+							<p>repositórios</p>
+						</FooterLink>
+					</FooterLinks>
+					<div className='footerData'>
+						<p>Criada em {formattedDate}</p>
 						<LocationLink
-							href={`https://www.google.com/maps/place/${cidade},+${uf}`}>
-							{user.location}
+							href={`https://www.google.com/maps/place/${cidade},+${uf}`}
+							target='_blank'>
+							{user.location} <FaLocationDot />
 						</LocationLink>
-						<p>Conta criada em {formattedDate}</p>
 					</div>
 				</FooterCard>
 			</CardContainer>

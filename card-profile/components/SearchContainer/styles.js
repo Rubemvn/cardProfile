@@ -22,7 +22,7 @@ export const SearchBar = styled.input`
 	padding: 1rem 0.5rem;
 	border-radius: 0.5rem 0 0 0.5rem;
 	width: 40rem;
-	color: ${({ theme }) => theme.colors.primary};
+	color: ${({ theme }) => theme.colors.tertiary};
 	text-align: center;
 	font-size: 1.6rem;
 	&::placeholder {
@@ -75,8 +75,13 @@ export const ResultItem = styled.div`
 		font-weight: 300;
 	}
 
+	small {
+		font-size: 1.1rem;
+		font-style: italic;
+	}
+
 	&:hover p {
-		color: ${({ theme }) => theme.colors.primary};
+		color: ${({ theme }) => theme.colors.tertiary};
 	}
 `;
 export const ProfileResult = styled(Image)`

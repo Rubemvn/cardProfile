@@ -10,7 +10,7 @@ import GlobalStyles from "@/styles/GlobalStyles";
 
 export default function Home({ children }) {
 	const themeData = {
-		...dark,
+		...light,
 		device: {
 			...device,
 		},

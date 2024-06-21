@@ -70,7 +70,10 @@ const SearchContainer = () => {
 									width='50'
 									height='50'
 								/>
-								<p>{user.login}</p>
+								<div>
+									<p>{user.login}</p>
+									<small>#{user.id}</small>
+								</div>
 							</ResultItem>
 						))
 					)}

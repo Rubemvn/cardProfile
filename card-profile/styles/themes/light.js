@@ -11,5 +11,10 @@ export default {
 		theme04: "#000000",
 		theme05: "#1f1f1f",
 		theme06: "#252525",
+		transparent01: "#00000008",
+		transparent02: "#0000000a",
+		gray01: "#868686",
+		gray02: "#b3b3b3",
+		gray03: "#5f5f5f",
 	},
 };
