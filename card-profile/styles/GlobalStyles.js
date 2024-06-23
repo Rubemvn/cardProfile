@@ -3,8 +3,8 @@ import { createGlobalStyle } from "styled-components";
 import { Bricolage_Grotesque } from "next/font/google";
 
 const bricolageGrotesque = Bricolage_Grotesque({
-	subsets: ["latin"],
-	weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export default createGlobalStyle`
@@ -34,6 +34,7 @@ body{
 
   font-family: ${bricolageGrotesque.style.fontFamily};
   
+  transition: all .3s ease-out;
   
   @media (max-width: 1024px){
     overflow: ${({ isMenuOpen }) => (isMenuOpen ? "hidden" : "auto")};

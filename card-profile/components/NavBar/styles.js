@@ -7,8 +7,9 @@ export const Container = styled.nav`
 	color: white;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-around;
 	grid-area: NB;
+	border-bottom: 1px solid ${({ theme }) => theme.colors.theme03};
 `;
 
 export const Logo = styled(Image)`

@@ -3,7 +3,12 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FaGithub } from "react-icons/fa";
 
-export const Container = styled.div``;
+export const Container = styled.div`	
+	display: flex;
+	gap: 1rem;
+	flex-direction: column;
+`;
+
 export const CardContainer = styled.div`
 	border: 2px solid ${({ theme }) => theme.colors.theme02};
 	border-radius: 1rem;
@@ -125,7 +130,23 @@ export const FooterLink = styled(Link)`
 		color: ${({ theme }) => theme.colors.secondary};
 	}
 `;
+
 export const LocationLink = styled(Link)`
 	color: ${({ theme }) => theme.colors.theme04};
 	text-decoration: none;
-`;
+	`;
+
+export const ImageDownloadButtonsContainer = styled.div`
+display: flex;
+gap: 1rem;
+
+`
+export const ImgDownloadButton = styled.button`
+background-color: ${({ theme }) => theme.colors.theme03};
+color: ${({ theme }) => theme.colors.theme06};
+border: 1px solid ${({ theme }) => theme.colors.gray02};
+padding: .5rem 1rem;
+font-size: 1.4rem;
+border-radius: .4rem;
+
+`

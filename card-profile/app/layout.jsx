@@ -1,5 +1,6 @@
 import { UserCardContextProvider } from "@/context/UserCardContext";
 import StyledComponentsRegistry from "./registry";
+import ThemeContextProvider from "@/context/ThemeContext";
 
 export const metadata = {
 	title: "Card Profile GitHub",
@@ -15,7 +16,9 @@ export default function RootLayout({ children }) {
 			<html lang='pt-br'>
 				<body>
 					<UserCardContextProvider>
-						<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+						<ThemeContextProvider>
+							<StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+						</ThemeContextProvider>
 					</UserCardContextProvider>
 				</body>
 			</html>

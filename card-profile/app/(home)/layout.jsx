@@ -7,10 +7,13 @@ import light from "@/styles/themes/light";
 
 import device from "@/styles/device";
 import GlobalStyles from "@/styles/GlobalStyles";
+import { useThemeContext } from "@/hooks/useThemeContext";
 
 export default function Home({ children }) {
+	const { theme } = useThemeContext();
+
 	const themeData = {
-		...light,
+		...theme,
 		device: {
 			...device,
 		},

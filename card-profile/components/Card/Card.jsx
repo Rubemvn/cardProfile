@@ -9,16 +9,22 @@ import {
 	LocationLink,
 	ImageGH,
 	FooterLinks,
+	ImageDownloadButtonsContainer,
+	ImgDownloadButton,
 } from "./styles";
 
-import { toJpeg, toPng, toSvg } from "html-to-image";
+import { toPng, toSvg } from "html-to-image";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 import { useRef } from "react";
 
 import { FaLocationDot } from "react-icons/fa6";
+import { HiOutlineDownload } from "react-icons/hi";
 
 const Card = ({ user }) => {
 	const cardRef = useRef(null);
 
+	// Formatação de data do perfil do usuário
 	const date = new Date(user.created_at);
 	const formattedDate = date.toLocaleDateString("pt-BR");
 	let cidade = "";
@@ -29,10 +35,25 @@ const Card = ({ user }) => {
 
 	const handleDownload = (format) => {
 		if (cardRef.current) {
-			toPixelData(cardRef.current, { quality: 2 })
+			let toFormat;
+			let fileExtension;
+
+			switch (format) {
+				case "png":
+					toFormat = toPng;
+					fileExtension = "png";
+					break;
+				case "svg":
+					toFormat = toSvg;
+					fileExtension = "svg";
+					break;
+				default:
+					return;
+			}
+			toFormat(cardRef.current, { quality: 1 })
 				.then((dataUrl) => {
 					const link = document.createElement("a");
-					link.download = `${user.login}-card.svg`;
+					link.download = `${user.login}-card.${fileExtension}`;
 					link.href = dataUrl;
 					link.click();
 				})
@@ -44,9 +65,6 @@ const Card = ({ user }) => {
 
 	return (
 		<Container>
-			<button onClick={handleDownload("jpeg")}>Baixar como JPEG</button>
-			<button onClick={handleDownload("png")}>Baixar como PNG</button>
-			<button onClick={handleDownload("svg")}>Baixar como SVG</button>
 			<CardContainer ref={cardRef}>
 				<HeaderCard>
 					<Profile
@@ -76,7 +94,7 @@ const Card = ({ user }) => {
 							href={`https://github.com/${user.login}?tab=following`}
 							target='_blank'>
 							<p>{user.following}</p>
-							<p>seguidos</p>
+							<p>seguindo</p>
 						</FooterLink>
 						<FooterLink
 							href={`https://github.com/${user.login}?tab=repositories`}
@@ -95,6 +113,14 @@ const Card = ({ user }) => {
 					</div>
 				</FooterCard>
 			</CardContainer>
+			<ImageDownloadButtonsContainer>
+				<ImgDownloadButton onClick={() => handleDownload("png")}>
+					<HiOutlineDownload /> .PNG
+				</ImgDownloadButton>
+				<ImgDownloadButton onClick={() => handleDownload("svg")}>
+					<HiOutlineDownload /> .SVG
+				</ImgDownloadButton>
+			</ImageDownloadButtonsContainer>
 		</Container>
 	);
 };
