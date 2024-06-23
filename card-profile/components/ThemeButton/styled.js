@@ -8,7 +8,9 @@ export const Container = styled.div`
   width: 6.5rem;
   padding: 0.4rem;
   border-radius: 2rem;
-  background-color: ${({ theme }) => theme.colors.theme03};
+  background-color: ${({ theme }) => theme.colors.theme02};
+  cursor: pointer;
+  border: 1px solid ${({ theme }) => theme.colors.theme03};
   /* flex-direction: ${({ themeValue }) => themeValue === 'dark' ? 'row' : 'row-reverse'}; */
 
   .img {

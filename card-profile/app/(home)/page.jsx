@@ -1,7 +1,12 @@
 import React from "react";
+import { Container, LinkPage } from "./styles";
 
 const page = () => {
-	return <div>pageeeeeee</div>;
+	return (
+		<Container>
+			<LinkPage href={"/cards"}>Cards</LinkPage>
+		</Container>
+	);
 };
 
 export default page;
