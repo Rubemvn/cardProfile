@@ -2,11 +2,12 @@ import Image from "next/image";
 import styled from "styled-components";
 
 export const Container = styled.div`
+  user-select: none; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 6.5rem;
-  padding: 0.4rem;
+  width: 7rem;
+  padding: 0.3rem;
   border-radius: 2rem;
   background-color: ${({ theme }) => theme.colors.theme02};
   cursor: pointer;
@@ -21,7 +22,7 @@ export const Container = styled.div`
     align-items: center;
     transition: all .5s ease-out;
     transition-delay: .4s;
-    transform: translateX(${({ themeValue }) => themeValue === 'light' ? "-3.2rem" : ''});
+    transform: translateX(${({ themeValue }) => themeValue === 'light' ? "-3.9rem" : ''});
     
   }
   `
@@ -32,7 +33,7 @@ background-color: ${({ theme }) => theme.colors.toggle02};
 border: 3px solid ${({ theme }) => theme.colors.toggle01};
 border-radius: 2rem;
 transition: all .4s ease-out;
-transform: translateX(${({ themeValue }) => themeValue === 'light' ? "3.2rem" : ''});
+transform: translateX(${({ themeValue }) => themeValue === 'light' ? "3.8rem" : ''});
 z-index: 10;
 `
 export const ToggleImage = styled(Image)`
