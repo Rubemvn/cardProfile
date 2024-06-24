@@ -3,8 +3,8 @@ import { createGlobalStyle } from "styled-components";
 import { Bricolage_Grotesque } from "next/font/google";
 
 const bricolageGrotesque = Bricolage_Grotesque({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700", "800"],
 });
 
 export default createGlobalStyle`
@@ -31,6 +31,11 @@ body{
   height: 100vh;
   /* font-family: 'bricolage Grotesque'; */
   background-color: ${(props) => props.theme.colors.theme01};
+  
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none;
 
   font-family: ${bricolageGrotesque.style.fontFamily};
   

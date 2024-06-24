@@ -14,8 +14,6 @@ import {
 } from "./styles";
 
 import { toPng, toSvg } from "html-to-image";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import { useRef } from "react";
 
 import { FaLocationDot } from "react-icons/fa6";
