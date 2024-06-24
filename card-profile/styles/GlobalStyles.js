@@ -32,9 +32,9 @@ body{
   /* font-family: 'bricolage Grotesque'; */
   background-color: ${(props) => props.theme.colors.theme01};
   
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* Internet Explorer/Edge */
+  -webkit-user-select: none;   
+  -moz-user-select: none;
+  -ms-user-select: none;     
   user-select: none;
 
   font-family: ${bricolageGrotesque.style.fontFamily};

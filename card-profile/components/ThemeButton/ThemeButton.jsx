@@ -6,23 +6,26 @@ import { useThemeContext } from "@/hooks/useThemeContext";
 
 import light from "@/styles/themes/light";
 import dark from "@/styles/themes/dark";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ThemeButton = () => {
 	const { theme, setTheme } = useThemeContext();
 	const [iconToggleBtn, setIconToggleBtn] = useState(sun);
 
+	useEffect(() => {
+		// Atualiza o ícone após 400ms para sincronizar com a animação
+		const timer = setTimeout(() => {
+			setIconToggleBtn(theme === dark ? sun : moon);
+		}, 400);
+
+		// Limpa o timer se o componente desmontar antes dos 400ms
+		return () => clearTimeout(timer);
+	}, [theme]);
+
 	const handleClick = () => {
 		setTheme((prevState) => (prevState === dark ? light : dark));
-
-		setTimeout(() => {
-			if (iconToggleBtn === sun) {
-				setIconToggleBtn(moon);
-			} else if (iconToggleBtn === moon) {
-				setIconToggleBtn(sun);
-			}
-		}, 400);
 	};
+
 	return (
 		<Container
 			onClick={handleClick}
