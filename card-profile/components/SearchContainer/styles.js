@@ -2,6 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 
 export const Container = styled.div``;
+
 export const SearchContent = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -13,7 +14,11 @@ export const SearchContent = styled.div`
 	form {
 		display: flex;
 	}
+
+	opacity: 0;
+	transform: translateX(-700px);
 `;
+
 export const SearchBar = styled.input`
 	/* outros estilos aqui */
 	background-color: ${({ theme }) => theme.colors.theme01};
@@ -52,7 +57,22 @@ export const ResultsContainer = styled.div`
 	flex-direction: column;
 	gap: 0.4rem;
 	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 7px;
+		background: ${({ theme }) => theme.colors.theme01};
+		border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: ${({ theme }) => theme.colors.primary};
+		border-radius: 10px;
+	}
+
+	transform: translateY(-1000px);
+	opacity: 0;
 `;
+
 export const ResultItem = styled.div`
 	display: flex;
 	cursor: pointer;

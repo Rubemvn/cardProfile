@@ -1,4 +1,8 @@
-import { useState } from "react";
+// Hooks
+import { useState, useRef, useLayoutEffect, useEffect } from "react";
+import { useUserCardContext } from "@/hooks/useUserCardContext";
+
+// Comps. Styles
 import {
 	Container,
 	ProfileResult,
@@ -8,9 +12,11 @@ import {
 	SearchButton,
 	SearchContent,
 } from "./styles";
+
+// Icons
 import { IoSearch } from "react-icons/io5";
 import { fetchData } from "@/hooks/useRequest";
-import { useUserCardContext } from "@/hooks/useUserCardContext";
+import gsap from "gsap";
 
 const SearchContainer = () => {
 	const [searchValue, setValueSearch] = useState("");
@@ -21,6 +27,18 @@ const SearchContainer = () => {
 	const setUserCardValue = (user) => {
 		setUserCard(user);
 	};
+
+	const [userIds, setUserIds] = useState([]);
+
+	useEffect(() => {
+		const newIds = results.map((user) => user.id);
+		setUserIds(newIds);
+	}, [results]);
+
+	console.log(userIds);
+
+	const searchCtt = useRef();
+	const resultsCtn = useRef();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -37,9 +55,33 @@ const SearchContainer = () => {
 		}
 	};
 
+	useLayoutEffect(() => {
+		gsap.to(searchCtt.current, {
+			x: 0,
+			opacity: 1,
+		});
+
+		return () => {
+			gsap.killTweensOf(searchCtt.current);
+		};
+	}, []);
+
+	useLayoutEffect(() => {
+		gsap.to(resultsCtn.current, {
+			y: 0,
+			opacity: 1,
+		});
+
+		return () => {
+			gsap.killTweensOf(resultsCtn.current);
+		};
+	}, []);
+
+	useLayoutEffect(() => {}, [userIds]); // Dependência para executar o efeito sempre que userIds mudar
+
 	return (
 		<Container>
-			<SearchContent>
+			<SearchContent ref={searchCtt}>
 				<form onSubmit={handleSubmit}>
 					<SearchBar
 						type='search'
@@ -54,12 +96,13 @@ const SearchContainer = () => {
 
 				{loading && <p>Loading...</p>}
 
-				<ResultsContainer>
+				<ResultsContainer ref={resultsCtn}>
 					{searchDone && results.length === 0 ? (
 						<p>No results found</p>
 					) : (
 						results.map((user) => (
 							<ResultItem
+								id={user.id}
 								key={user.id}
 								onClick={() => {
 									setUserCardValue(user.login);
