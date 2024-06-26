@@ -3,7 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FaGithub } from "react-icons/fa";
 
-export const Container = styled.div`	
+export const Container = styled.div`
 	display: flex;
 	gap: 1rem;
 	flex-direction: column;
@@ -42,7 +42,7 @@ export const Profile = styled(Image)`
 	height: auto;
 	border-radius: 10rem;
 	border: 2px solid ${({ theme }) => theme.colors.theme02};
-	background-color: ${({ theme }) => theme.colors.theme01};
+	background-color: ${({ theme }) => theme.colors.gray02};
 	position: relative;
 	z-index: 2;
 `;
@@ -127,26 +127,24 @@ export const FooterLink = styled(Link)`
 
 	& > p:first-child {
 		font-size: 1.8rem;
-		color: ${({ theme }) => theme.colors.secondary};
+		color: ${({ theme }) => theme.colors.quartiary};
 	}
 `;
 
 export const LocationLink = styled(Link)`
 	color: ${({ theme }) => theme.colors.theme04};
 	text-decoration: none;
-	`;
+`;
 
 export const ImageDownloadButtonsContainer = styled.div`
-display: flex;
-gap: 1rem;
-
-`
+	display: flex;
+	gap: 1rem;
+`;
 export const ImgDownloadButton = styled.button`
-background-color: ${({ theme }) => theme.colors.theme03};
-color: ${({ theme }) => theme.colors.theme06};
-border: 1px solid ${({ theme }) => theme.colors.gray02};
-padding: .5rem 1rem;
-font-size: 1.4rem;
-border-radius: .4rem;
-
-`
+	background-color: ${({ theme }) => theme.colors.theme03};
+	color: ${({ theme }) => theme.colors.theme06};
+	border: 1px solid ${({ theme }) => theme.colors.gray02};
+	padding: 0.5rem 1rem;
+	font-size: 1.4rem;
+	border-radius: 0.4rem;
+`;

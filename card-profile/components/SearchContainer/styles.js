@@ -16,7 +16,7 @@ export const SearchContent = styled.div`
 	}
 
 	opacity: 0;
-	transform: translateX(-700px);
+	transform: translateX(-300px);
 `;
 
 export const SearchBar = styled.input`
@@ -30,6 +30,7 @@ export const SearchBar = styled.input`
 	color: ${({ theme }) => theme.colors.tertiary};
 	text-align: center;
 	font-size: 1.6rem;
+
 	&::placeholder {
 		font-size: 1.6rem;
 		text-align: center;
@@ -68,9 +69,6 @@ export const ResultsContainer = styled.div`
 		background: ${({ theme }) => theme.colors.primary};
 		border-radius: 10px;
 	}
-
-	transform: translateY(-1000px);
-	opacity: 0;
 `;
 
 export const ResultItem = styled.div`

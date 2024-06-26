@@ -6,19 +6,20 @@ import { useThemeContext } from "@/hooks/useThemeContext";
 
 import light from "@/styles/themes/light";
 import dark from "@/styles/themes/dark";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
 
 const ThemeButton = () => {
 	const { theme, setTheme } = useThemeContext();
 	const [iconToggleBtn, setIconToggleBtn] = useState(sun);
 
+	const containerRef = useRef(null);
+
 	useEffect(() => {
-		// Atualiza o ícone após 400ms para sincronizar com a animação
 		const timer = setTimeout(() => {
 			setIconToggleBtn(theme === dark ? sun : moon);
 		}, 400);
 
-		// Limpa o timer se o componente desmontar antes dos 400ms
 		return () => clearTimeout(timer);
 	}, [theme]);
 
@@ -26,11 +27,20 @@ const ThemeButton = () => {
 		setTheme((prevState) => (prevState === dark ? light : dark));
 	};
 
+	useLayoutEffect(() => {
+		const tl = gsap.timeline({ defaults: { duration: 0.7 } });
+
+		const container = containerRef.current;
+
+		tl.fromTo(container, { opacity: 0, y: -100 }, { opacity: 1, y: 0 });
+	}, []);
+
 	return (
 		<Container
 			onClick={handleClick}
-			themeValue={theme.title}>
-			<ToggleButton themeValue={theme.title}></ToggleButton>
+			$themeValue={theme.title}
+			ref={containerRef}>
+			<ToggleButton $themeValue={theme.title}></ToggleButton>
 
 			<div className='img'>
 				<ToggleImage

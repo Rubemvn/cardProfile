@@ -15,4 +15,7 @@ export const Container = styled.nav`
 export const Logo = styled(Image)`
 	height: 5.5rem;
 	width: auto;
+
+	opacity: 0;
+	transform: translateX(-100px);
 `;

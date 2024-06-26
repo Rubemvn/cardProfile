@@ -35,10 +35,7 @@ const SearchContainer = () => {
 		setUserIds(newIds);
 	}, [results]);
 
-	console.log(userIds);
-
 	const searchCtt = useRef();
-	const resultsCtn = useRef();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -56,28 +53,16 @@ const SearchContainer = () => {
 	};
 
 	useLayoutEffect(() => {
-		gsap.to(searchCtt.current, {
-			x: 0,
-			opacity: 1,
-		});
+		gsap.fromTo(
+			searchCtt.current,
+			{ x: -300, opacity: 0 },
+			{ x: 0, opacity: 1 },
+		);
 
 		return () => {
 			gsap.killTweensOf(searchCtt.current);
 		};
 	}, []);
-
-	useLayoutEffect(() => {
-		gsap.to(resultsCtn.current, {
-			y: 0,
-			opacity: 1,
-		});
-
-		return () => {
-			gsap.killTweensOf(resultsCtn.current);
-		};
-	}, []);
-
-	useLayoutEffect(() => {}, [userIds]); // Dependência para executar o efeito sempre que userIds mudar
 
 	return (
 		<Container>
@@ -96,7 +81,7 @@ const SearchContainer = () => {
 
 				{loading && <p>Loading...</p>}
 
-				<ResultsContainer ref={resultsCtn}>
+				<ResultsContainer>
 					{searchDone && results.length === 0 ? (
 						<p>No results found</p>
 					) : (

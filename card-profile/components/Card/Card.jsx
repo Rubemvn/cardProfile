@@ -1,3 +1,4 @@
+import gsap from "gsap";
 import {
 	Container,
 	CardContainer,
@@ -14,14 +15,12 @@ import {
 } from "./styles";
 
 import { toPng, toSvg } from "html-to-image";
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 import { FaLocationDot } from "react-icons/fa6";
 import { HiOutlineDownload } from "react-icons/hi";
 
 const Card = ({ user }) => {
-	const cardRef = useRef(null);
-
 	// Formatação de data do perfil do usuário
 	const date = new Date(user.created_at);
 	const formattedDate = date.toLocaleDateString("pt-BR");
@@ -60,6 +59,22 @@ const Card = ({ user }) => {
 				});
 		}
 	};
+
+	const cardRef = useRef(null);
+	const btnPngRef = useRef(null);
+	const btnSvgRef = useRef(null);
+
+	useLayoutEffect(() => {
+		const btnPng = btnPngRef.current;
+		const btnSvg = btnSvgRef.current;
+		const card = cardRef.current;
+
+		const tl = gsap.timeline({ defaults: { duration: 0.5 } });
+
+		tl.fromTo(card, { opacity: 0, x: 300 }, { opacity: 1, x: 0 })
+			.fromTo(btnPng, { opacity: 0, y: 100 }, { opacity: 1, y: 0 })
+			.fromTo(btnSvg, { opacity: 0, y: 100 }, { opacity: 1, y: 0 }, "-=0.15");
+	}, []);
 
 	return (
 		<Container>
@@ -112,10 +127,14 @@ const Card = ({ user }) => {
 				</FooterCard>
 			</CardContainer>
 			<ImageDownloadButtonsContainer>
-				<ImgDownloadButton onClick={() => handleDownload("png")}>
+				<ImgDownloadButton
+					onClick={() => handleDownload("png")}
+					ref={btnPngRef}>
 					<HiOutlineDownload /> .PNG
 				</ImgDownloadButton>
-				<ImgDownloadButton onClick={() => handleDownload("svg")}>
+				<ImgDownloadButton
+					onClick={() => handleDownload("svg")}
+					ref={btnSvgRef}>
 					<HiOutlineDownload /> .SVG
 				</ImgDownloadButton>
 			</ImageDownloadButtonsContainer>
