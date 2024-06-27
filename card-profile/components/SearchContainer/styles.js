@@ -1,7 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+	height: 100%;
+	width: 100%;
+	max-width: 40rem;
+	@media ${({ theme }) => theme.device.laptop} {
+		height: 90%;
+	}
+`;
 
 export const SearchContent = styled.div`
 	display: flex;
@@ -26,7 +34,8 @@ export const SearchBar = styled.input`
 	border-right: 0px;
 	padding: 1rem 0.5rem;
 	border-radius: 0.5rem 0 0 0.5rem;
-	width: 40rem;
+	width: 100%;
+	max-width: 40rem;
 	color: ${({ theme }) => theme.colors.tertiary};
 	text-align: center;
 	font-size: 1.6rem;

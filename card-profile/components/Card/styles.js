@@ -7,6 +7,12 @@ export const Container = styled.div`
 	display: flex;
 	gap: 1rem;
 	flex-direction: column;
+	@media ${({ theme }) => theme.device.mobileL} {
+		scale: 0.9;
+	}
+	@media ${({ theme }) => theme.device.mobileS} {
+		scale: 0.8;
+	}
 `;
 
 export const CardContainer = styled.div`
@@ -14,7 +20,8 @@ export const CardContainer = styled.div`
 	border-radius: 1rem;
 	overflow: hidden;
 	box-sizing: content-box;
-	width: 36rem;
+	max-width: 36rem;
+	width: 100%;
 	background-color: ${({ theme }) => theme.colors.theme01};
 `;
 export const HeaderCard = styled.div`
@@ -68,9 +75,6 @@ export const MainCard = styled.div`
 
 	h2 {
 		font-size: 2.5rem;
-		color: ${({ theme }) => theme.colors.primary};
-		color: ${({ theme }) => theme.colors.quartiary};
-		color: ${({ theme }) => theme.colors.secondary};
 		color: ${({ theme }) => theme.colors.tertiary};
 	}
 

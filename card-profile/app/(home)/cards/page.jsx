@@ -1,14 +1,18 @@
 "use client";
-import React from "react";
-import { Container } from "./styles";
+import { Container, Content } from "./styles";
 import SearchContainer from "@/components/SearchContainer/SearchContainer";
 import CardSection from "@/components/CardSection/CardSection";
+import { useEffect, useRef, useState } from "react";
 
 const page = () => {
+	const containerRef = useRef(null);
+
 	return (
-		<Container>
-			<SearchContainer />
-			<CardSection />
+		<Container ref={containerRef}>
+			<Content>
+				<SearchContainer />
+				<CardSection />
+			</Content>
 		</Container>
 	);
 };

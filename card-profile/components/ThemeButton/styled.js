@@ -14,7 +14,7 @@ export const Container = styled.div`
 	border: 1px solid ${({ theme }) => theme.colors.theme03};
 
 	opacity: 0;
-	transform: translateX(-100px);
+	transform: translateY(-100px);
 
 	.img {
 		width: 2.5rem;

@@ -1,3 +1,4 @@
+"use client";
 // Hooks
 import { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { useUserCardContext } from "@/hooks/useUserCardContext";
@@ -64,6 +65,10 @@ const SearchContainer = () => {
 		};
 	}, []);
 
+	const handleUserClick = (user) => {
+		setUserCardValue(user.login);
+	};
+
 	return (
 		<Container>
 			<SearchContent ref={searchCtt}>
@@ -83,14 +88,14 @@ const SearchContainer = () => {
 
 				<ResultsContainer>
 					{searchDone && results.length === 0 ? (
-						<p>No results found</p>
+						<p>Sem resultados encontrados</p>
 					) : (
 						results.map((user) => (
 							<ResultItem
 								id={user.id}
 								key={user.id}
 								onClick={() => {
-									setUserCardValue(user.login);
+									handleUserClick(user);
 								}}>
 								<ProfileResult
 									src={user.avatar_url}

@@ -1,3 +1,5 @@
+import device from "../device";
+
 export default {
 	title: "dark",
 	colors: {
@@ -21,6 +23,7 @@ export default {
 		gray03: "#b3b3b3",
 
 		toggle01: "#ffbc00",
-		toggle02: "#ffebb8"
+		toggle02: "#ffebb8",
 	},
+	device,
 };

@@ -13,6 +13,17 @@ export default createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+   &::-webkit-scrollbar {
+		width: 7px;
+		background: ${({ theme }) => theme.colors.theme01};
+		border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: ${({ theme }) => theme.colors.primary};
+		border-radius: 10px;
+	}
+
 }
 
 html{
@@ -44,7 +55,8 @@ body{
   @media (max-width: 1024px){
     overflow: ${({ isMenuOpen }) => (isMenuOpen ? "hidden" : "auto")};
 	}
-}
+
+ 
 
 *, button, input {
   border: 1;

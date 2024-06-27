@@ -1,3 +1,4 @@
+"use client";
 import gsap from "gsap";
 import {
 	Container,
@@ -15,7 +16,7 @@ import {
 } from "./styles";
 
 import { toPng, toSvg } from "html-to-image";
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 import { FaLocationDot } from "react-icons/fa6";
 import { HiOutlineDownload } from "react-icons/hi";
@@ -77,7 +78,7 @@ const Card = ({ user }) => {
 	}, []);
 
 	return (
-		<Container>
+		<Container id='#card'>
 			<CardContainer ref={cardRef}>
 				<HeaderCard>
 					<Profile
@@ -119,7 +120,11 @@ const Card = ({ user }) => {
 					<div className='footerData'>
 						<p>Criada em {formattedDate}</p>
 						<LocationLink
-							href={`https://www.google.com/maps/place/${cidade},+${uf}`}
+							href={
+								uf !== undefined
+									? `https://www.google.com/maps/search/${cidade},+${uf}`
+									: `https://www.google.com/maps/search/${cidade}`
+							}
 							target='_blank'>
 							{user.location} <FaLocationDot />
 						</LocationLink>
