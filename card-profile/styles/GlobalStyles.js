@@ -1,10 +1,15 @@
 "use client";
 import { createGlobalStyle } from "styled-components";
-import { Bricolage_Grotesque } from "next/font/google";
+import { Bricolage_Grotesque, Archivo } from "next/font/google";
 
 const bricolageGrotesque = Bricolage_Grotesque({
 	subsets: ["latin"],
 	weight: ["400", "500", "600", "700", "800"],
+});
+
+const archivo = Archivo({
+	subsets: ["latin"],
+	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export default createGlobalStyle`
@@ -48,12 +53,13 @@ body{
   -ms-user-select: none;     
   user-select: none;
 
-  font-family: ${bricolageGrotesque.style.fontFamily};
+  font-family: ${archivo.style.fontFamily};
   
   transition: all .3s ease-out;
   
   @media (max-width: 1024px){
     overflow: ${({ isMenuOpen }) => (isMenuOpen ? "hidden" : "auto")};
+	}
 	}
 
  
@@ -61,7 +67,7 @@ body{
 *, button, input {
   border: 1;
   outline: 0;
-  font-family: ${bricolageGrotesque.style.fontFamily};
+  font-family: ${archivo.style.fontFamily};
   /* font-family: 'Bricolage_Grotesque'; */
 }
 

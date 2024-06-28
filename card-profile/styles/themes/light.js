@@ -22,6 +22,8 @@ export default {
 		gray02: "#b3b3b3",
 		gray03: "#5f5f5f",
 
+		blue01: "#32cab8",
+
 		toggle01: "#215ca3",
 		toggle02: "#7aa8ce",
 	},

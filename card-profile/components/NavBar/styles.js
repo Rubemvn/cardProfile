@@ -15,9 +15,11 @@ export const Container = styled.nav`
 		justify-content: space-between;
 		padding: 0 6rem;
 	}
+
 	@media ${({ theme }) => theme.device.mobileL} {
 		padding: 0 3rem;
 	}
+
 	@media ${({ theme }) => theme.device.mobileS} {
 		padding: 0 2rem;
 	}

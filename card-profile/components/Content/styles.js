@@ -7,8 +7,4 @@ export const Container = styled.main`
 	color: ${({ theme }) => theme.colors.theme04};
 	overflow-x: hidden;
 	overflow-y: auto;
-
-	@media ${({ theme }) => theme.device.laptop} {
-		overflow-y: auto;
-	}
 `;
