@@ -32,7 +32,12 @@ const HeroSection = () => {
 	const leftBottomRef = useRef(null);
 	const rightTopRef = useRef(null);
 	const rightBottomRef = useRef(null);
-	const cursorRef = useRef(null);
+	const titleRef = useRef(null);
+	const activitiesRef = useRef(null);
+
+	const btnCvRef = useRef(null);
+	const btnLinkedinRef = useRef(null);
+	const btnGithubRef = useRef(null);
 
 	const handleClickDownloadCv = () => {
 		const url = "/docs/Curriculo Rúbem Vieira.pdf"; // Caminho relativo ao arquivo na pasta public
@@ -52,17 +57,11 @@ const HeroSection = () => {
 		const leftBottom = leftBottomRef.current;
 		const rightTop = rightTopRef.current;
 		const rightBottom = rightBottomRef.current;
-		const tl = gsap.timeline({ defaults: { duration: 1 } });
+		const tl = gsap.timeline({ defaults: { duration: 0.5 } });
+		const tl02 = gsap.timeline({ defaults: { duration: 0.5 } });
 
-		const cursor = cursorRef.current;
-		gsap.to(cursor, {
-			delay: 1,
-			opacity: 0,
-			duration: 1,
-			yoyo: true,
-			repeat: -1,
-			ease: "power1.inOut",
-		});
+		const title = titleRef.current;
+		const activities = activitiesRef.current;
 
 		tl.fromTo(
 			imgContainer,
@@ -112,7 +111,28 @@ const HeroSection = () => {
 					y: 10,
 				},
 				"-=2",
+			)
+			.fromTo(
+				title,
+				{ opacity: 0, y: 100 },
+				{ duration: 0.4, opacity: 1, y: 0 },
+				"-=2",
+			)
+			.fromTo(
+				activities,
+				{ opacity: 0, y: 100 },
+				{ duration: 0.4, opacity: 1, y: 0 },
+				"-=.4",
 			);
+
+		const btnCv = btnCvRef.current;
+		const btnLinkedin = btnLinkedinRef.current;
+		const btnGithub = btnGithubRef.current;
+
+		tl02
+			.fromTo(btnCv, { opacity: 0, x: 100 }, { opacity: 1, x: 0 })
+			.fromTo(btnLinkedin, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }, "-=.2")
+			.fromTo(btnGithub, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }, "-=.2");
 	}, []);
 
 	return (
@@ -144,12 +164,12 @@ const HeroSection = () => {
 				/>
 			</ImgContainer>
 			<Title>
-				<h1>
+				<h1 ref={titleRef}>
 					<span className='typeAnimation'>
 						<TypeAnimation
 							sequence={[
 								"",
-								1000,
+								2000,
 								"Olá!",
 								700,
 								"",
@@ -170,20 +190,20 @@ const HeroSection = () => {
 					</span>
 					<span className='cursor'>|</span>
 				</h1>
-				<p>
+				<p ref={activitiesRef}>
 					<TypeAnimation
 						sequence={[
 							"",
-							1000,
-							"Front-end Developer",
+							2000,
+							"Desenvolvedor Frontend",
 							2000,
 							"",
 							500,
-							"Web Desingner",
+							"Web Designer",
 							2000,
 							"",
 							500,
-							"Ui / Ux",
+							"Ui/Ux Designer",
 							2000,
 							"",
 							1000,
@@ -195,17 +215,21 @@ const HeroSection = () => {
 				</p>
 			</Title>
 			<ButtonsLinks>
-				<ButtonCV onClick={handleClickDownloadCv}>
+				<ButtonCV
+					onClick={handleClickDownloadCv}
+					ref={btnCvRef}>
 					<IoDocumentTextOutline /> Download CV
 				</ButtonCV>
 				<Button
 					target='_blank'
-					href='https://www.linkedin.com/in/rubemvieira'>
+					href='https://www.linkedin.com/in/rubemvieira'
+					ref={btnLinkedinRef}>
 					<GrLinkedin /> LinkedIn
 				</Button>
 				<Button
 					target='_blank'
-					href='https://www.github.com/rubemvn'>
+					href='https://www.github.com/rubemvn'
+					ref={btnGithubRef}>
 					<FiGithub /> Github
 				</Button>
 			</ButtonsLinks>

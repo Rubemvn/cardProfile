@@ -3,8 +3,9 @@ import StyledComponentsRegistry from "./registry";
 import ThemeContextProvider from "@/context/ThemeContext";
 
 export const metadata = {
-	title: "Rúbem Vieira | Front-en Developer",
-	description: "Crie um cartão do seu perfil do github.",
+	title: "Rúbem Vieira | Desenvolvedor Frontend",
+	description:
+		"Sou Rúbem Vieira! Desenvolvedor Frontend, Web Designer e UI/UX Designer",
 	icons: {
 		icon: ["/images/logo-dark.svg?v=4"],
 	},

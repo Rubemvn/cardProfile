@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { TypeAnimation } from "react-type-animation";
 import styled, { keyframes } from "styled-components";
 
 export const Container = styled.section`
@@ -10,7 +9,7 @@ export const Container = styled.section`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-
+	overflow: hidden;
 `;
 
 export const ImgContainer = styled.div`
@@ -18,8 +17,16 @@ export const ImgContainer = styled.div`
 	height: 20rem;
 	position: relative;
 	perspective: "1000px";
-	transform: translateX(-400px);
 	opacity: 0;
+	@media ${({ theme }) => theme.device.tablet} {
+		width: 18rem;
+		height: 18rem;
+		
+		@media ${({ theme }) => theme.device.mobileM} {
+			width: 15rem;
+			height: 15rem;
+		}
+}
 `;
 
 export const LogoImg = styled(Image)`
@@ -30,6 +37,13 @@ export const LogoImg = styled(Image)`
 	left: ${({ position }) => position.left};
 	bottom: ${({ position }) => position.bottom};
 	right: ${({ position }) => position.right};
+	
+	@media ${({ theme }) => theme.device.tablet} {
+		width: 18rem;
+	}
+	@media ${({ theme }) => theme.device.mobileM} {
+		width: 15rem;
+	}
 `;
 
 const blink = keyframes`
@@ -64,30 +78,75 @@ export const Title = styled.div`
 				to right,
 				${({ theme }) => theme.colors.blue01} 0%,
 				${({ theme }) => theme.colors.primary} 100%
-			);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			
+			.cursor {
+				/* font-size: 7rem; Ensure the cursor matches the text size */
+				font-weight: 800;
+				color: ${({ theme }) => theme.colors.primary};
+				animation: ${blink} 1.5s step-end infinite;
+			}
+			
+			opacity: 0;
 		}
 		
-		.cursor {
-      font-size: 7rem; /* Ensure the cursor matches the text size */
-      font-weight: 800;
-      color: ${({ theme }) => theme.colors.primary};
-			 animation: ${blink} 1.5s step-end infinite;
-    }
+		p {
+			font-size: 4rem;
+			font-style: italic;
+			font-weight: 600;
+			color: ${({ theme }) => theme.colors.theme06};
+			
+			opacity: 0;
+		}
+
+	@media ${({ theme }) => theme.device.laptop} {
+		h1{
+			font-size: 5.5rem;
+		}
+		p{
+			font-size: 3.5rem;
+
+		}
 	}
-	
-	p {
-		font-size: 4rem;
-		font-style: italic;
-		font-weight: 600;
-		color: ${({ theme }) => theme.colors.theme06};
+	@media ${({ theme }) => theme.device.tablet} {
+		h1{
+			font-size: 4rem;
+			line-height: 5rem;
+		}
+		p{
+			font-size: 2.5rem;
+		}
+	}
+	@media ${({ theme }) => theme.device.mobileL} {
+		h1{
+			font-size: 3.5rem;
+			line-height: 4rem;
+		}
+		p{
+			font-size: 2rem;
+		}
+	}
+	@media ${({ theme }) => theme.device.mobileM} {
+		h1{
+			font-size: 3rem;
+			line-height: 3.5rem;
+		}
+		p{
+			font-size: 2rem;
+		}
 	}
 `;
 
 export const ButtonsLinks = styled.div`
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	gap: 1rem;
+	flex-wrap: wrap;
+	padding: 0 2rem;
 `;
 
 export const ButtonCV = styled.button`
@@ -107,6 +166,18 @@ export const ButtonCV = styled.button`
 	border-radius: 0.6rem;
 	border: 1px solid ${({ theme }) => theme.colors.blue01};
 	border: none;
+	
+	transition: scale .2s ease-out ;
+	&:hover{
+		scale: .95;
+	}
+	
+	@media ${({ theme }) => theme.device.mobileL} {
+		font-size: 1.6rem;	
+	}
+	
+	opacity: 0;
+
 `;
 
 export const Button = styled(Link)`
@@ -120,4 +191,14 @@ export const Button = styled(Link)`
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
+
+	transition: scale .2s ease-out ;
+	&:hover{
+		scale: .95;
+	}
+
+	@media ${({ theme }) => theme.device.mobileL} {
+		font-size: 1.6rem;	
+	}
+	opacity: 0;
 `;
