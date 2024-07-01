@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 
 export const Container = styled.section`
 	width: 100%;
-	height: 100%;
+	height: calc(100vh - 7rem);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -68,9 +68,9 @@ export const Title = styled.div`
 	h1 {
 		display: inline-block;
 		font-size: 7rem;
-		line-height: 8rem;
 		font-weight: 800;
 		color: ${({ theme }) => theme.colors.primary};
+		line-height: 8rem;
 
 		.typeAnimation {
 			background: ${({ theme }) => theme.colors.primary};
@@ -167,14 +167,17 @@ export const ButtonCV = styled.button`
 	border: none;
 
 	transition: all 0.2s ease-out;
+	box-sizing: border-box;
 
 	opacity: 0;
 	&:hover {
-		transform: scale(0.95);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		color: ${({ theme }) => theme.colors.blue01};
-		border: 1px solid ${({ theme }) => theme.colors.primary};
+		/* border: 10px solid ${({ theme }) => theme.colors.primary}; */
+		-webkit-box-shadow: 0px 0px 10px 0px rgba(77, 241, 123, 1);
+		-moz-box-shadow: 0px 0px 10px 0px rgba(77, 241, 123, 1);
+		box-shadow: 0px 0px 10px 0px rgba(77, 241, 123, 1);
 	}
 
 	@media ${({ theme }) => theme.device.mobileL} {
@@ -199,7 +202,6 @@ export const Button = styled(Link)`
 	opacity: 0;
 
 	&:hover {
-		transform: scale(0.95);
 		background-color: ${({ theme }) => theme.colors.theme04};
 		color: ${({ theme }) => theme.colors.theme01};
 	}
