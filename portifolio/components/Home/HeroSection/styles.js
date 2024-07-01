@@ -21,12 +21,12 @@ export const ImgContainer = styled.div`
 	@media ${({ theme }) => theme.device.tablet} {
 		width: 18rem;
 		height: 18rem;
-		
+
 		@media ${({ theme }) => theme.device.mobileM} {
 			width: 15rem;
 			height: 15rem;
 		}
-}
+	}
 `;
 
 export const LogoImg = styled(Image)`
@@ -37,7 +37,7 @@ export const LogoImg = styled(Image)`
 	left: ${({ position }) => position.left};
 	bottom: ${({ position }) => position.bottom};
 	right: ${({ position }) => position.right};
-	
+
 	@media ${({ theme }) => theme.device.tablet} {
 		width: 18rem;
 	}
@@ -71,70 +71,69 @@ export const Title = styled.div`
 		line-height: 8rem;
 		font-weight: 800;
 		color: ${({ theme }) => theme.colors.primary};
-		
-		.typeAnimation{
+
+		.typeAnimation {
 			background: ${({ theme }) => theme.colors.primary};
 			background: linear-gradient(
 				to right,
 				${({ theme }) => theme.colors.blue01} 0%,
 				${({ theme }) => theme.colors.primary} 100%
-				);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-			}
-			
-			.cursor {
-				/* font-size: 7rem; Ensure the cursor matches the text size */
-				font-weight: 800;
-				color: ${({ theme }) => theme.colors.primary};
-				animation: ${blink} 1.5s step-end infinite;
-			}
-			
-			opacity: 0;
+			);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
 		}
-		
-		p {
-			font-size: 4rem;
-			font-style: italic;
-			font-weight: 600;
-			color: ${({ theme }) => theme.colors.theme06};
-			
-			opacity: 0;
+
+		.cursor {
+			/* font-size: 7rem; Ensure the cursor matches the text size */
+			font-weight: 800;
+			color: ${({ theme }) => theme.colors.primary};
+			animation: ${blink} 1.5s step-end infinite;
 		}
+
+		opacity: 0;
+	}
+
+	p {
+		font-size: 4rem;
+		font-style: italic;
+		font-weight: 600;
+		color: ${({ theme }) => theme.colors.theme06};
+
+		opacity: 0;
+	}
 
 	@media ${({ theme }) => theme.device.laptop} {
-		h1{
+		h1 {
 			font-size: 5.5rem;
 		}
-		p{
+		p {
 			font-size: 3.5rem;
-
 		}
 	}
 	@media ${({ theme }) => theme.device.tablet} {
-		h1{
+		h1 {
 			font-size: 4rem;
 			line-height: 5rem;
 		}
-		p{
+		p {
 			font-size: 2.5rem;
 		}
 	}
 	@media ${({ theme }) => theme.device.mobileL} {
-		h1{
+		h1 {
 			font-size: 3.5rem;
 			line-height: 4rem;
 		}
-		p{
+		p {
 			font-size: 2rem;
 		}
 	}
 	@media ${({ theme }) => theme.device.mobileM} {
-		h1{
+		h1 {
 			font-size: 3rem;
 			line-height: 3.5rem;
 		}
-		p{
+		p {
 			font-size: 2rem;
 		}
 	}
@@ -166,18 +165,21 @@ export const ButtonCV = styled.button`
 	border-radius: 0.6rem;
 	border: 1px solid ${({ theme }) => theme.colors.blue01};
 	border: none;
-	
-	transition: scale .2s ease-out ;
-	&:hover{
-		scale: .95;
-	}
-	
-	@media ${({ theme }) => theme.device.mobileL} {
-		font-size: 1.6rem;	
-	}
-	
-	opacity: 0;
 
+	transition: all 0.2s ease-out;
+
+	opacity: 0;
+	&:hover {
+		transform: scale(0.95);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		color: ${({ theme }) => theme.colors.blue01};
+		border: 1px solid ${({ theme }) => theme.colors.primary};
+	}
+
+	@media ${({ theme }) => theme.device.mobileL} {
+		font-size: 1.6rem;
+	}
 `;
 
 export const Button = styled(Link)`
@@ -192,13 +194,17 @@ export const Button = styled(Link)`
 	justify-content: center;
 	gap: 0.5rem;
 
-	transition: scale .2s ease-out ;
-	&:hover{
-		scale: .95;
+	transition: all 0.2s ease-out;
+
+	opacity: 0;
+
+	&:hover {
+		transform: scale(0.95);
+		background-color: ${({ theme }) => theme.colors.theme04};
+		color: ${({ theme }) => theme.colors.theme01};
 	}
 
 	@media ${({ theme }) => theme.device.mobileL} {
-		font-size: 1.6rem;	
+		font-size: 1.6rem;
 	}
-	opacity: 0;
 `;

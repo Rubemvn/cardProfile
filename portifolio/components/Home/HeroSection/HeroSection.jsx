@@ -24,7 +24,7 @@ import rightBottom from "@/public/icons/logo-r-animation/right-bottom.svg";
 import leftTop from "@/public/icons/logo-r-animation/left-top.svg";
 
 // Hooks
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const HeroSection = () => {
 	const imgContainerRef = useRef(null);
@@ -38,6 +38,11 @@ const HeroSection = () => {
 	const btnCvRef = useRef(null);
 	const btnLinkedinRef = useRef(null);
 	const btnGithubRef = useRef(null);
+
+	const [handleMouse, setHandleMouse] = useState({
+		status: false,
+		element: null,
+	});
 
 	const handleClickDownloadCv = () => {
 		const url = "/docs/Curriculo Rúbem Vieira.pdf"; // Caminho relativo ao arquivo na pasta public
@@ -62,6 +67,10 @@ const HeroSection = () => {
 
 		const title = titleRef.current;
 		const activities = activitiesRef.current;
+
+		const btnCv = btnCvRef.current;
+		const btnLinkedin = btnLinkedinRef.current;
+		const btnGithub = btnGithubRef.current;
 
 		tl.fromTo(
 			imgContainer,
@@ -125,15 +134,35 @@ const HeroSection = () => {
 				"-=.4",
 			);
 
-		const btnCv = btnCvRef.current;
-		const btnLinkedin = btnLinkedinRef.current;
-		const btnGithub = btnGithubRef.current;
-
 		tl02
 			.fromTo(btnCv, { opacity: 0, x: 100 }, { opacity: 1, x: 0 })
 			.fromTo(btnLinkedin, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }, "-=.2")
 			.fromTo(btnGithub, { opacity: 0, x: 100 }, { opacity: 1, x: 0 }, "-=.2");
+
+		// Hover Btns
 	}, []);
+
+	const handleMouseOver = (status, element) => {
+		setHandleMouse({ status, element: element.current });
+	};
+
+	useEffect(() => {
+		// HoverBtns
+		const el = handleMouse.element;
+		if (handleMouse.status) {
+			gsap.to(el, {
+				scale: 0.95,
+				duration: 0.2,
+				ease: "power1.inOut",
+			});
+		} else if (!handleMouse.status) {
+			gsap.to(el, {
+				scale: 1,
+				duration: 0.2,
+				ease: "power1.inOut",
+			});
+		}
+	}, [handleMouse.status]);
 
 	return (
 		<Container>
@@ -165,6 +194,11 @@ const HeroSection = () => {
 			</ImgContainer>
 			<Title>
 				<h1 ref={titleRef}>
+					<span style={{ display: "none" }}>
+						Olá!
+						<br /> Me Chamo Rúbem Vieira.
+						<br /> Seja bem vindo!
+					</span>
 					<span className='typeAnimation'>
 						<TypeAnimation
 							sequence={[
@@ -217,19 +251,25 @@ const HeroSection = () => {
 			<ButtonsLinks>
 				<ButtonCV
 					onClick={handleClickDownloadCv}
-					ref={btnCvRef}>
+					ref={btnCvRef}
+					onMouseEnter={() => handleMouseOver(true, btnCvRef)}
+					onMouseLeave={() => handleMouseOver(false, btnCvRef)}>
 					<IoDocumentTextOutline /> Download CV
 				</ButtonCV>
 				<Button
 					target='_blank'
 					href='https://www.linkedin.com/in/rubemvieira'
-					ref={btnLinkedinRef}>
+					ref={btnLinkedinRef}
+					onMouseEnter={() => handleMouseOver(true, btnLinkedinRef)}
+					onMouseLeave={() => handleMouseOver(false, btnLinkedinRef)}>
 					<GrLinkedin /> LinkedIn
 				</Button>
 				<Button
 					target='_blank'
 					href='https://www.github.com/rubemvn'
-					ref={btnGithubRef}>
+					ref={btnGithubRef}
+					onMouseEnter={() => handleMouseOver(true, btnGithubRef)}
+					onMouseLeave={() => handleMouseOver(false, btnGithubRef)}>
 					<FiGithub /> Github
 				</Button>
 			</ButtonsLinks>
